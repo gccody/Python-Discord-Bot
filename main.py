@@ -1,5 +1,11 @@
 import discord
 import os
+import configparser
+
+config = configparser.ConfigParser()
+config.sections()
+config.read('token.ini')
+config.sections()
 
 client = discord.Client()
 
@@ -15,4 +21,4 @@ async def on_message(message):
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
 
-client.run(os.getenv('TOKEN'))
+client.run(config['TOKENS']['TOKEN'])
